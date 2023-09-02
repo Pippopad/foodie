@@ -11,10 +11,10 @@ const Orders = () => {
       <div className="p-4">
         <div className="w-full m-auto p-4 border rounded-lg bg-white overflow-y-auto">
           <div className="my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer">
-            <span>Order</span>
-            <span className="sm:text-left text-right">Customer</span>
-            <span className="hidden md:grid">Status</span>
-            <span className="hidden sm:grid max-md:justify-self-end">
+            <span className="font-bold">Order</span>
+            <span className="sm:text-left text-right font-bold">Customer</span>
+            <span className="hidden md:grid font-bold">Status</span>
+            <span className="hidden sm:grid justify-self-center max-md:justify-self-end font-bold">
               Actions
             </span>
           </div>
@@ -47,7 +47,7 @@ const Orders = () => {
                     {order.status}
                   </span>
                 </p>
-                <div className="hidden sm:flex max-md:justify-self-end">
+                <div className="hidden sm:flex justify-self-center max-md:justify-self-end">
                   <div className="bg-purple-100 hover:bg-purple-200 p-2 rounded-lg mx-1 flex items-center">
                     <BsFillCheckCircleFill />
                     <p className="pl-2">Mark as Completed</p>

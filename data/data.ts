@@ -6,7 +6,7 @@ export const dd_orders = [
       last: "Rossi",
     },
     total: 4.0,
-    status: "Completed",
+    status: "Processing",
     items: [
       [4, "Mattonella"],
       [3, "Bomba crema"],
@@ -50,6 +50,24 @@ export const dd_orders = [
     items: [
       [3, "Bomba crema"],
       [2, "Acqua naturale"],
+    ],
+  },
+  {
+    id: 5,
+    name: {
+      first: "Adolf",
+      last: "Pasqualini",
+    },
+    total: 8.5,
+    status: "Completed",
+    items: [
+      [3, "Bomba crema"],
+      [2, "Acqua naturale"],
+      [3, "Bomba crema"],
+      [4, "Mattonella"],
+      [2, "Acqua naturale"],
+      [5, "Pizzetta rossa"],
+      [6, "Cotoletta"],
     ],
   },
 ];
