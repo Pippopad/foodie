@@ -2,7 +2,7 @@ import React from "react";
 import Header from "@/components/Header";
 import { BsFillCheckCircleFill, BsEyeFill } from "react-icons/bs";
 import { FaShoppingBag } from "react-icons/fa";
-import { data } from "@/data/data";
+import { dd_orders } from "@/data/data";
 
 const Orders = () => {
   return (
@@ -19,7 +19,7 @@ const Orders = () => {
             </span>
           </div>
           <ul>
-            {data.map((order, id) => (
+            {dd_orders.map((order, id) => (
               <li
                 key={id}
                 className="bg-gray-100 hover:bg-gray-200 my-3 p-2 rounded-lg grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer"
@@ -48,11 +48,13 @@ const Orders = () => {
                   </span>
                 </p>
                 <div className="hidden sm:flex max-md:justify-self-end">
-                  <div className="bg-purple-100 hover:bg-purple-200 w-min p-2 rounded-lg mx-1">
+                  <div className="bg-purple-100 hover:bg-purple-200 p-2 rounded-lg mx-1 flex items-center">
                     <BsFillCheckCircleFill />
+                    <p className="pl-2">Mark as Completed</p>
                   </div>
-                  <div className="bg-purple-100 hover:bg-purple-200 w-min p-2 rounded-lg mx-1">
+                  <div className="bg-purple-100 hover:bg-purple-200 p-2 rounded-lg mx-1 flex items-center">
                     <BsEyeFill />
+                    <p className="pl-2">View</p>
                   </div>
                 </div>
               </li>
