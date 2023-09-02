@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import { FaPlus } from "react-icons/fa";
 import { BiSolidEdit } from "react-icons/bi";
 import { GrFormClose } from "react-icons/gr";
+import { IoFastFood } from "react-icons/io5";
 
 import { dd_items } from "@/data/data";
 
@@ -32,7 +33,12 @@ const Items = () => {
                 key={id}
                 className="bg-gray-100 hover:bg-gray-200 my-3 p-2 rounded-lg grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer"
               >
-                <p>{item.name}</p>
+                <div className="flex items-center">
+                  <div className="bg-purple-100 p-3 rounded-lg">
+                    <IoFastFood className="text-purple-800" />
+                  </div>
+                  <p className="pl-4 font-bold text-gray-700">{item.name}</p>
+                </div>
                 <p className="hidden md:grid">{item.price.toFixed(2)} €</p>
                 <p className="sm:text-left text-right">{item.amount}</p>
                 <div className="hidden sm:flex justify-self-center max-md:justify-self-end">

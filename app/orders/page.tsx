@@ -24,13 +24,13 @@ const Orders = () => {
                 key={id}
                 className="bg-gray-100 hover:bg-gray-200 my-3 p-2 rounded-lg grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer"
               >
-                <div className="flex">
+                <div className="flex items-center">
                   <div className="bg-purple-100 p-2 rounded-lg">
                     <FaShoppingBag className="text-purple-800" />
                   </div>
-                  <div className="pl-4 font-bold text-gray-700 self-center">
+                  <p className="pl-4 font-bold text-gray-700">
                     {order.total.toFixed(2)} €
-                  </div>
+                  </p>
                 </div>
                 <p className="sm:text-left text-right">
                   {order.name.last} {order.name.first}
