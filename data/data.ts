@@ -6,7 +6,7 @@ export const data = [
       last: "Rossi",
     },
     total: 4.0,
-    status: "completed",
+    status: "Completed",
     items: [
       [4, "Mattonella"],
       [3, "Bomba crema"],
@@ -20,7 +20,7 @@ export const data = [
       last: "Pascale",
     },
     total: 1.5,
-    status: "completed",
+    status: "Processing",
     items: [[3, "Bomba crema"]],
   },
   {
@@ -30,7 +30,7 @@ export const data = [
       last: "Giacchini",
     },
     total: 7.0,
-    status: "completed",
+    status: "Completed",
     items: [
       [3, "Bomba crema"],
       [4, "Mattonella"],
@@ -46,7 +46,7 @@ export const data = [
       last: "Scafetta",
     },
     total: 1.5,
-    status: "completed",
+    status: "Completed",
     items: [
       [3, "Bomba crema"],
       [2, "Acqua Naturale"],
