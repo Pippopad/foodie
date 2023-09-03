@@ -6,6 +6,7 @@ import { FaPlus } from "react-icons/fa";
 import { BiSolidEdit } from "react-icons/bi";
 import { GrFormClose } from "react-icons/gr";
 import { IoFastFood } from "react-icons/io5";
+import { BiEuro } from "react-icons/bi";
 
 import { dd_items } from "@/data/data";
 import Modal from "@/components/Modal";
@@ -94,16 +95,25 @@ const Items = () => {
           <div className="my-2 grid grid-cols-2 gap-2">
             <div>
               <p className="font-bold text-lg">Price</p>
-              <input
-                type="text"
-                className="border border-gray-500 rounded-lg p-2 text-md w-full focus:outline-none"
-              />
+              <div className="border border-gray-500 flex items-center rounded-lg">
+                <input
+                  type="number"
+                  className="rounded-lg p-2 pr-1 w-full focus:outline-none"
+                  defaultValue={1.0}
+                  min={0.1}
+                  step={0.05}
+                />
+                <BiEuro size={30} />
+              </div>
             </div>
             <div>
               <p className="font-bold text-lg">Amount</p>
               <input
-                type="text"
+                type="number"
                 className="border border-gray-500 rounded-lg p-2 text-md w-full focus:outline-none"
+                defaultValue={1}
+                min={1}
+                step={1}
               />
             </div>
           </div>
@@ -139,24 +149,31 @@ const Items = () => {
             <input
               type="text"
               className="border border-gray-500 rounded-lg p-2 text-md w-full focus:outline-none"
-              value={editItemModalData["name"]}
+              defaultValue={editItemModalData["name"]}
             />
           </div>
           <div className="my-2 grid grid-cols-2 gap-2">
             <div>
               <p className="font-bold text-lg">Price</p>
-              <input
-                type="text"
-                className="border border-gray-500 rounded-lg p-2 text-md w-full focus:outline-none"
-                value={editItemModalData["price"]}
-              />
+              <div className="border border-gray-500 flex items-center rounded-lg">
+                <input
+                  type="number"
+                  className="rounded-lg p-2 pr-1 w-full focus:outline-none"
+                  defaultValue={editItemModalData["price"]?.toFixed(2)}
+                  min={0.1}
+                  step={0.05}
+                />
+                <BiEuro size={30} />
+              </div>
             </div>
             <div>
               <p className="font-bold text-lg">Amount</p>
               <input
-                type="text"
+                type="number"
                 className="border border-gray-500 rounded-lg p-2 text-md w-full focus:outline-none"
-                value={editItemModalData["amount"]}
+                defaultValue={editItemModalData["amount"]}
+                min={1}
+                step={1}
               />
             </div>
           </div>
