@@ -23,7 +23,7 @@ const Modal = ({
     <div
       className="fixed inset-0 bg-black bg-opacity-25 flex justify-center items-center"
       id="wrapper"
-      onClick={handleClose}
+      onMouseDown={handleClose}
     >
       <div className={"bg-white p-4 rounded-lg border " + className ?? ""}>
         <h1 className="text-center text-2xl font-bold">{title}</h1>
