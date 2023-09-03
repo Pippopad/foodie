@@ -8,9 +8,9 @@ export const dd_orders = [
     total: 4.0,
     status: "Processing",
     items: [
-      [4, "Mattonella"],
-      [3, "Bomba crema"],
-      [2, "Acqua naturale"],
+      [4, "Mattonella", 1],
+      [3, "Bomba crema", 2],
+      [2, "Acqua naturale", 1],
     ],
   },
   {
@@ -21,7 +21,7 @@ export const dd_orders = [
     },
     total: 1.5,
     status: "Processing",
-    items: [[3, "Bomba crema"]],
+    items: [[3, "Bomba crema", 2]],
   },
   {
     id: 3,
@@ -32,11 +32,11 @@ export const dd_orders = [
     total: 7.0,
     status: "Completed",
     items: [
-      [3, "Bomba crema"],
-      [4, "Mattonella"],
-      [2, "Acqua naturale"],
-      [5, "Pizzetta rossa"],
-      [6, "Cotoletta"],
+      [3, "Bomba crema", 3],
+      [4, "Mattonella", 2],
+      [2, "Acqua naturale", 2],
+      [5, "Pizzetta rossa", 1],
+      [6, "Cotoletta", 1],
     ],
   },
   {
@@ -48,8 +48,8 @@ export const dd_orders = [
     total: 1.5,
     status: "Completed",
     items: [
-      [3, "Bomba crema"],
-      [2, "Acqua naturale"],
+      [3, "Bomba crema", 2],
+      [2, "Acqua naturale", 2],
     ],
   },
   {
@@ -61,13 +61,11 @@ export const dd_orders = [
     total: 8.5,
     status: "Completed",
     items: [
-      [3, "Bomba crema"],
-      [2, "Acqua naturale"],
-      [3, "Bomba crema"],
-      [4, "Mattonella"],
-      [2, "Acqua naturale"],
-      [5, "Pizzetta rossa"],
-      [6, "Cotoletta"],
+      [3, "Bomba crema", 5],
+      [2, "Acqua naturale", 4],
+      [4, "Mattonella", 3],
+      [5, "Pizzetta rossa", 1],
+      [6, "Cotoletta", 3],
     ],
   },
 ];

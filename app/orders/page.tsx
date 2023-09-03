@@ -1,10 +1,15 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Header from "@/components/Header";
 import { BsFillCheckCircleFill, BsEyeFill } from "react-icons/bs";
 import { FaShoppingBag } from "react-icons/fa";
 import { dd_orders } from "@/data/data";
+import Modal from "@/components/Modal";
 
 const Orders = () => {
+  const [showViewModal, setShowViewModal] = useState(false);
+  const [viewModalData, setViewModalData] = useState({} as any);
   return (
     <main className="bg-gray-100 min-h-screen">
       <Header title="Orders" />
@@ -52,16 +57,50 @@ const Orders = () => {
                     <BsFillCheckCircleFill />
                     <p className="pl-2">Mark as Completed</p>
                   </div>
-                  <div className="bg-purple-100 hover:bg-purple-200 p-2 rounded-lg mx-1 flex items-center">
+                  <button
+                    className="bg-purple-100 hover:bg-purple-200 p-2 rounded-lg mx-1 flex items-center"
+                    onClick={() => {
+                      setViewModalData(order);
+                      setShowViewModal(true);
+                    }}
+                  >
                     <BsEyeFill />
                     <p className="pl-2">View</p>
-                  </div>
+                  </button>
                 </div>
               </li>
             ))}
           </ul>
         </div>
       </div>
+      <Modal
+        title="View order"
+        isVisible={showViewModal}
+        onClose={() => setShowViewModal(false)}
+        className="w-[20rem]"
+      >
+        <div className="my-2">
+          <div className="border border-gray-500 p-2">
+            {viewModalData["items"]
+              ? viewModalData["items"].map((item: any[], id: number) => (
+                  <p key={id}>
+                    - {item[1]} x{item[2]}
+                  </p>
+                ))
+              : null}
+          </div>
+        </div>
+        <div className="flex justify-end gap-2">
+          <button
+            className="bg-purple-700 hover:bg-purple-800 text-white py-2 px-4 rounded-lg"
+            onClick={() => {
+              setShowViewModal(false);
+            }}
+          >
+            Back
+          </button>
+        </div>
+      </Modal>
     </main>
   );
 };

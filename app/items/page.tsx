@@ -56,12 +56,7 @@ const Items = () => {
                   <div
                     className="bg-purple-100 hover:bg-purple-200 p-2 rounded-lg mx-1 flex items-center"
                     onClick={() => {
-                      setEditItemModalData({
-                        id: item.id,
-                        name: item.name,
-                        price: item.price,
-                        amount: item.amount,
-                      });
+                      setEditItemModalData(item);
                       setShowEditItemModal(true);
                     }}
                   >
@@ -143,7 +138,7 @@ const Items = () => {
         onClose={() => setShowEditItemModal(false)}
         className="w-[20rem]"
       >
-        <div>
+        <div className="my-2">
           <div className="my-2">
             <p className="font-bold text-lg">Name</p>
             <input
@@ -152,7 +147,7 @@ const Items = () => {
               defaultValue={editItemModalData["name"]}
             />
           </div>
-          <div className="my-2 grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <p className="font-bold text-lg">Price</p>
               <div className="border border-gray-500 flex items-center rounded-lg">
