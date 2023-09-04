@@ -11,7 +11,7 @@ import { BiEuro } from "react-icons/bi";
 import { dd_items } from "@/data/data";
 import Modal from "@/components/Modal";
 
-const Items = () => {
+const Page = () => {
   const [showAddItemModal, setShowAddItemModal] = useState(false);
   const [showEditItemModal, setShowEditItemModal] = useState(false);
   const [editItemModalData, setEditItemModalData] = useState({} as any);
@@ -196,4 +196,4 @@ const Items = () => {
   );
 };
 
-export default Items;
+export default Page;

@@ -1,8 +1,8 @@
-import "./globals.css";
+import Sidebar from "@/components/Sidebar";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Foodie",
+  title: "Foodie | Admin",
 };
 
 export default function RootLayout({
@@ -12,7 +12,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <Sidebar>{children}</Sidebar>
+      </body>
     </html>
   );
 }

@@ -2,7 +2,7 @@ import React from "react";
 import Header from "@/components/Header";
 import { BsCheckLg } from "react-icons/bs";
 
-const Settings = () => {
+const Page = () => {
   return (
     <main className="bg-gray-100 min-h-screen">
       <Header title="Settings" />
@@ -32,4 +32,4 @@ const Settings = () => {
   );
 };
 
-export default Settings;
+export default Page;
