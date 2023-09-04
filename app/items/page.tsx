@@ -23,7 +23,7 @@ const Items = () => {
         <div className="w-full m-auto p-4 border rounded-lg bg-white overflow-y-auto">
           <div className="my-3 p-2 flex justify-end">
             <button
-              className="bg-green-600 text-white px-3 py-1 rounded-lg flex items-center"
+              className="bg-purple-700 hover:bg-purple-800 text-white px-3 py-1 rounded-lg flex items-center"
               onClick={() => setShowAddItemModal(true)}
             >
               <FaPlus />
@@ -84,7 +84,7 @@ const Items = () => {
             <p className="font-bold text-lg">Name</p>
             <input
               type="text"
-              className="border border-gray-500 rounded-lg p-2 text-md w-full focus:outline-none"
+              className="border border-gray-500 rounded-lg p-2 w-full focus:outline-none"
             />
           </div>
           <div className="my-2 grid grid-cols-2 gap-2">
@@ -105,7 +105,7 @@ const Items = () => {
               <p className="font-bold text-lg">Amount</p>
               <input
                 type="number"
-                className="border border-gray-500 rounded-lg p-2 text-md w-full focus:outline-none"
+                className="border border-gray-500 rounded-lg p-2 w-full focus:outline-none"
                 defaultValue={1}
                 min={1}
                 step={1}
@@ -123,7 +123,7 @@ const Items = () => {
             Confirm
           </button>
           <button
-            className="bg-gray-200 hover:bg-gray-300 py-2 px-4 rounded-lg"
+            className="bg-purple-100 hover:bg-purple-200 py-2 px-4 rounded-lg"
             onClick={() => {
               setShowAddItemModal(false);
             }}
@@ -143,7 +143,7 @@ const Items = () => {
             <p className="font-bold text-lg">Name</p>
             <input
               type="text"
-              className="border border-gray-500 rounded-lg p-2 text-md w-full focus:outline-none"
+              className="border border-gray-500 rounded-lg p-2 w-full focus:outline-none"
               defaultValue={editItemModalData["name"]}
             />
           </div>
@@ -165,7 +165,7 @@ const Items = () => {
               <p className="font-bold text-lg">Amount</p>
               <input
                 type="number"
-                className="border border-gray-500 rounded-lg p-2 text-md w-full focus:outline-none"
+                className="border border-gray-500 rounded-lg p-2 w-full focus:outline-none"
                 defaultValue={editItemModalData["amount"]}
                 min={1}
                 step={1}
@@ -183,7 +183,7 @@ const Items = () => {
             Confirm
           </button>
           <button
-            className="bg-gray-200 hover:bg-gray-300 py-2 px-4 rounded-lg"
+            className="bg-purple-100 hover:bg-purple-200 py-2 px-4 rounded-lg"
             onClick={() => {
               setShowEditItemModal(false);
             }}
