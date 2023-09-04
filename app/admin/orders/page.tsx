@@ -7,7 +7,7 @@ import { FaShoppingBag } from "react-icons/fa";
 import { dd_orders } from "@/data/data";
 import Modal from "@/components/Modal";
 
-const Orders = () => {
+const Page = () => {
   const [showViewModal, setShowViewModal] = useState(false);
   const [viewModalData, setViewModalData] = useState({} as any);
   return (
@@ -105,4 +105,4 @@ const Orders = () => {
   );
 };
 
-export default Orders;
+export default Page;
