@@ -1,3 +1,4 @@
+import AuthProvider from "@/components/AuthProvider";
 import Sidebar from "@/components/Sidebar";
 import type { Metadata } from "next";
 
@@ -13,7 +14,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Sidebar>{children}</Sidebar>
+        <AuthProvider>
+          <Sidebar>{children}</Sidebar>
+        </AuthProvider>
       </body>
     </html>
   );
