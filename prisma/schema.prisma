@@ -56,3 +56,14 @@ model OrderItem {
   @@index([orderId, itemId])
   @@map("orders_items")
 }
+
+model Admin {
+  id       Int    @id @default(autoincrement())
+  username String
+  password String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("admins")
+}

@@ -14,7 +14,7 @@ const Page = async () => {
 
   return (
     <main className="bg-gray-100 min-h-screen">
-      <Header title="Dashboard" username={session.user.username} />
+      <Header title="Dashboard" username={session.user} />
       <TopCards />
       <div className="p-4 grid md:grid-cols-3 gap-4">
         <BarChart />

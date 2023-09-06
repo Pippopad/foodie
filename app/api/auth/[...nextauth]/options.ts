@@ -1,6 +1,9 @@
 import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
+import prisma from "@/prisma/client";
+import { md5 } from "@/utils";
+
 export const options: NextAuthOptions = {
   providers: [
     CredentialsProvider({
@@ -10,11 +13,15 @@ export const options: NextAuthOptions = {
       async authorize(
         credentials: { username: string; password: string } | any
       ) {
-        const user: any = { username: credentials?.username, role: "admin" };
+        const hash = md5(credentials?.password);
+        const user = await prisma.admin.findFirst({
+          where: {
+            username: credentials?.username,
+            password: hash,
+          },
+        });
 
-        if (credentials?.password !== "admin") return null;
-
-        return user;
+        return user as any;
       },
     }),
     CredentialsProvider({
@@ -37,12 +44,18 @@ export const options: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, user, account }) {
-      if (user) token.user = user;
+    async jwt({
+      token,
+      user,
+    }: {
+      token: { username: string };
+      user: { username: string };
+    }) {
+      if (user) token.username = user.username;
       return token;
     },
-    async session({ session, token, user }) {
-      session.user = token?.user as any;
+    async session({ session, token }) {
+      session.user = token?.username as any;
 
       return session;
     },
