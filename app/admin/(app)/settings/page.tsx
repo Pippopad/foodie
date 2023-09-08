@@ -1,11 +1,19 @@
 import React from "react";
 import Header from "@/components/Header";
 import { BsCheckLg } from "react-icons/bs";
+import { redirect } from "next/navigation";
+import { getServerSession } from "next-auth";
+import { options } from "@/app/api/auth/[...nextauth]/options";
 
-const Page = () => {
+const Page = async () => {
+  const session: any = await getServerSession(options);
+  if (!session) {
+    redirect("/admin");
+  }
+
   return (
     <main className="bg-gray-100 min-h-screen">
-      <Header title="Settings" />
+      <Header title="Settings" username={session.user} />
       <div className="p-4">
         <div className="bg-white px-8 py-8 border rounded-lg grid gap-4 w-full m-auto">
           <h1 className="text-3xl text-center font-bold">Settings</h1>

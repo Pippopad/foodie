@@ -11,14 +11,24 @@ import { BiEuro } from "react-icons/bi";
 import { dd_items } from "@/data/data";
 import Modal from "@/components/Modal";
 
+import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
+
 const Page = () => {
   const [showAddItemModal, setShowAddItemModal] = useState(false);
   const [showEditItemModal, setShowEditItemModal] = useState(false);
   const [editItemModalData, setEditItemModalData] = useState({} as any);
 
+  const session = useSession({
+    required: true,
+    onUnauthenticated() {
+      redirect("/admin");
+    },
+  });
+
   return (
     <main className="bg-gray-100 min-h-screen">
-      <Header title="Items" />
+      <Header title="Items" username={(session.data?.user as any) ?? ""} />
       <div className="p-4">
         <div className="w-full m-auto p-4 border rounded-lg bg-white overflow-y-auto">
           <div className="my-3 p-2 flex justify-end">

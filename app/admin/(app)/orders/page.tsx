@@ -6,13 +6,23 @@ import { BsFillCheckCircleFill, BsEyeFill } from "react-icons/bs";
 import { FaShoppingBag } from "react-icons/fa";
 import { dd_orders } from "@/data/data";
 import Modal from "@/components/Modal";
+import { redirect } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 const Page = () => {
   const [showViewModal, setShowViewModal] = useState(false);
   const [viewModalData, setViewModalData] = useState({} as any);
+
+  const session = useSession({
+    required: true,
+    onUnauthenticated() {
+      redirect("/admin");
+    },
+  });
+
   return (
     <main className="bg-gray-100 min-h-screen">
-      <Header title="Orders" />
+      <Header title="Orders" username={(session.data?.user as any) ?? ""} />
       <div className="p-4">
         <div className="w-full m-auto p-4 border rounded-lg bg-white overflow-y-auto">
           <div className="my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer">
