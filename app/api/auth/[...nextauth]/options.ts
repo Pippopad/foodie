@@ -14,12 +14,18 @@ export const options: NextAuthOptions = {
         credentials: { username: string; password: string } | any
       ) {
         const hash = md5(credentials?.password);
-        const user = await prisma.admin.findFirst({
-          where: {
-            username: credentials?.username,
-            password: hash,
-          },
-        });
+
+        let user;
+        try {
+          user = await prisma.admin.findFirst({
+            where: {
+              username: credentials?.username,
+              password: hash,
+            },
+          });
+        } catch {
+          throw Error("Couldn't connect to the database! Retry later.");
+        }
 
         return user as any;
       },
@@ -59,6 +65,7 @@ export const options: NextAuthOptions = {
   },
   pages: {
     signIn: "/admin",
+    error: "/admin",
   },
   secret: process.env.NEXTAUTH_SECRET,
 };

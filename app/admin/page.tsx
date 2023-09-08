@@ -2,10 +2,14 @@
 
 import React, { useState } from "react";
 import { signIn } from "next-auth/react";
+import { useSearchParams } from "next/navigation";
 
 const Page = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const error = useSearchParams().get("error");
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
@@ -16,12 +20,7 @@ const Page = () => {
         redirect: true,
         callbackUrl: "/admin/dashboard",
       });
-      console.log(res);
-      fetch(`http://localhost/a`);
-    } catch (e) {
-      console.log("AAAAAAAAAAAABBBBBBBB");
-      console.log(e);
-    }
+    } catch (e) {}
   };
 
   return (
@@ -29,6 +28,11 @@ const Page = () => {
       <div className="bg-white p-8 rounded-lg md:w-[30vw]">
         <form onSubmit={handleSubmit}>
           <h1 className="text-3xl text-center">Admin Login</h1>
+          {error ? (
+            <p className="bg-red-300 border border-red-500 text-red-500 rounded p-2 my-2 break-words">
+              {error}
+            </p>
+          ) : null}
           <div className="my-2">
             <p className="font-bold text-lg">Username</p>
             <input
