@@ -10,21 +10,18 @@ export const options: NextAuthOptions = {
       id: "admin",
       name: "Admin Login",
       credentials: {},
-      async authorize(
-        credentials: { username: string; password: string } | any
-      ) {
+      async authorize(credentials: any) {
         const hash = md5(credentials?.password);
 
-        let user;
-        try {
-          user = await prisma.admin.findFirst({
-            where: {
-              username: credentials?.username,
-              password: hash,
-            },
-          });
-        } catch {
-          throw Error("Couldn't connect to the database! Retry later.");
+        const user = await prisma.admin.findFirst({
+          where: {
+            username: credentials?.username,
+            password: hash,
+          },
+        });
+
+        if (!user) {
+          throw Error("Invalid username or password!");
         }
 
         return user as any;
@@ -33,11 +30,8 @@ export const options: NextAuthOptions = {
     CredentialsProvider({
       id: "customer",
       name: "Customer Login",
-      credentials: {
-        username: {},
-        password: {},
-      },
-      async authorize(credentials) {
+      credentials: {},
+      async authorize(credentials: any) {
         if (
           credentials?.username !== "test" ||
           credentials?.password !== "test"
