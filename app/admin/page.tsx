@@ -1,10 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
-import { signIn } from "next-auth/react";
-import { useSearchParams } from "next/navigation";
+import { signIn, useSession } from "next-auth/react";
+import { useSearchParams, redirect } from "next/navigation";
 
 const Page = () => {
+  const session = useSession();
+  if (session) redirect("/admin/dashboard");
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
