@@ -1,8 +1,8 @@
 import { options } from "@/app/api/auth/[...nextauth]/options";
-import BarChart from "@/components/BarChart";
+import BarChart from "@/components/dashboard/BarChart";
 import Header from "@/components/Header";
-import RecentOrders from "@/components/RecentOrders";
-import TopCards from "@/components/TopCards";
+import RecentOrders from "@/components/dashboard/RecentOrders";
+import TopCards from "@/components/dashboard/TopCards";
 import { getServerSession } from "next-auth/next";
 import { redirect } from "next/navigation";
 

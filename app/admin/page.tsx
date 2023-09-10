@@ -6,7 +6,9 @@ import { useSearchParams, redirect } from "next/navigation";
 
 const Page = () => {
   const session = useSession();
-  if (session) redirect("/admin/dashboard");
+  if (session.status === "authenticated") {
+    redirect("/admin/dashboard");
+  }
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
