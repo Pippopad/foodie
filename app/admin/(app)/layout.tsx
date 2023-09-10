@@ -1,3 +1,4 @@
+import AuthProvider from "@/components/AuthProvider";
 import Sidebar from "@/components/Sidebar";
 import type { Metadata } from "next";
 
