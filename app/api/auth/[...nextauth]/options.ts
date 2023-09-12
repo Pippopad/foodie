@@ -1,5 +1,6 @@
 import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import * as ldap from "ldapjs";
 
 import prisma from "@/prisma/client";
 import { md5 } from "@/utils";
@@ -38,14 +39,24 @@ export const options: NextAuthOptions = {
       name: "Customer Login",
       credentials: {},
       async authorize(credentials: any) {
-        if (
-          credentials?.username !== "test" ||
-          credentials?.password !== "test"
-        )
-          return null;
+        const client = ldap.createClient({ url: "ldap://192.168.56.10" });
 
-        const user: any = { username: "test", foo: "bar" };
-        return user;
+        return new Promise((resolve, reject) => {
+          client.bind(
+            `CN=${credentials?.username},CN=Users,DC=testserver,DC=home`,
+            credentials?.password,
+            (err) => {
+              console.log(err);
+
+              if (err) {
+                client.destroy(err);
+                return reject("LDAP: Wrong username or password");
+              }
+
+              resolve({ username: "test" } as any);
+            }
+          );
+        });
       },
     }),
   ],
