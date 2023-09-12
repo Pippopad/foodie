@@ -68,7 +68,7 @@ const Page = () => {
           <ul>
             {loading ? (
               <p className="text-center text-lg">Loading...</p>
-            ) : items.length === 0 ? (
+            ) : items === undefined || items.length === 0 ? (
               <>
                 <p className="text-center text-lg">List empty.</p>
                 <div

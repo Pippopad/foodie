@@ -1,5 +1,8 @@
 import prisma from "@/prisma/client";
-import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
+import {
+  PrismaClientInitializationError,
+  PrismaClientKnownRequestError,
+} from "@prisma/client/runtime/library";
 import { NextRequest, NextResponse } from "next/server";
 
 const GET = async (req: NextRequest) => {
@@ -12,7 +15,10 @@ const GET = async (req: NextRequest) => {
     });
     return NextResponse.json({ data: items, status: 200 });
   } catch (e) {
-    if (e instanceof PrismaClientKnownRequestError) {
+    if (
+      e instanceof PrismaClientInitializationError ||
+      e instanceof PrismaClientKnownRequestError
+    ) {
       return NextResponse.json({
         code: "DATABASE_CONNECTION_ERROR",
         status: 500,
