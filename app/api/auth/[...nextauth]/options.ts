@@ -28,6 +28,7 @@ export const options: NextAuthOptions = {
         if (!user) {
           throw Error("Invalid username or password!");
         }
+        console.log(process.env.NEXTAUTH_SECRET);
 
         return user as any;
       },
@@ -63,8 +64,8 @@ export const options: NextAuthOptions = {
     strategy: "jwt",
   },
   pages: {
-    signIn: "/admin",
-    error: "/admin",
+    signIn: "/login",
+    error: "/login",
   },
   secret: process.env.NEXTAUTH_SECRET,
 };

@@ -16,7 +16,7 @@ const Page = () => {
   const session = useSession({
     required: true,
     onUnauthenticated() {
-      redirect("/admin");
+      redirect("/login");
     },
   });
 

@@ -15,13 +15,13 @@ const Sidebar = ({ children }: { children: React.ReactNode }) => {
     <div className="flex">
       <div className="fixed w-20 h-screen p-4 bg-white border-r-[1px] flex flex-col justify-between">
         <div className="flex flex-col items-center">
-          <Link href="/admin/dashboard">
+          <Link href="/admin">
             <div className="bg-purple-800 text-white p-3 rounded-lg inline-block">
               <FoodieIcon />
             </div>
           </Link>
           <span className="border-b-[1px] border-gray-200 w-full p-2"></span>
-          <Link href="/admin/dashboard">
+          <Link href="/admin">
             <div className="bg-gray-100 hover:bg-gray-200 cursor-pointer my-4 p-3 rounded-lg inline-block">
               <RxDashboard size={20} />
             </div>
