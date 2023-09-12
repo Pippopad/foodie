@@ -17,6 +17,11 @@ const Page = () => {
   return (
     <div className="flex justify-center items-center bg-purple-200 min-h-screen">
       <div className="bg-white p-8 rounded-lg w-[60vh] flex justify-around flex-col gap-y-2">
+        {error ? (
+          <p className="bg-red-300 border border-red-500 text-red-500 rounded p-2 my-2 break-words">
+            {error}
+          </p>
+        ) : null}
         <div className="admin-login">
           <h1 className="text-3xl text-center">Student Login</h1>
           <form
@@ -33,11 +38,6 @@ const Page = () => {
               } catch (e) {}
             }}
           >
-            {error ? (
-              <p className="bg-red-300 border border-red-500 text-red-500 rounded p-2 my-2 break-words">
-                {error}
-              </p>
-            ) : null}
             <div className="my-2">
               <p className="font-bold text-lg">Username</p>
               <input
@@ -75,11 +75,6 @@ const Page = () => {
               } catch (e) {}
             }}
           >
-            {error ? (
-              <p className="bg-red-300 border border-red-500 text-red-500 rounded p-2 my-2 break-words">
-                {error}
-              </p>
-            ) : null}
             <div className="my-2">
               <p className="font-bold text-lg">Username</p>
               <input
