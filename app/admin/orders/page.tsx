@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import { BsFillCheckCircleFill, BsEyeFill } from "react-icons/bs";
 import { FaShoppingBag } from "react-icons/fa";
@@ -13,16 +13,20 @@ const Page = () => {
   const [showViewModal, setShowViewModal] = useState(false);
   const [viewModalData, setViewModalData] = useState({} as any);
 
-  const session = useSession({
-    required: true,
-    onUnauthenticated() {
-      redirect("/login");
-    },
-  });
+  const session = useSession();
+  if (
+    session.status === "unauthenticated" ||
+    session.data?.user.role !== "admin"
+  ) {
+    redirect("/admin");
+  }
 
   return (
     <main className="bg-gray-100 min-h-screen">
-      <Header title="Orders" username={(session.data?.user as any) ?? ""} />
+      <Header
+        title="Orders"
+        username={(session.data?.user.username as any) ?? ""}
+      />
       <div className="p-4">
         <div className="w-full m-auto p-4 border rounded-lg bg-white overflow-y-auto">
           <div className="my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer">

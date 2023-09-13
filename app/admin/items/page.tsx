@@ -26,12 +26,13 @@ const Page = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const session = useSession({
-    required: true,
-    onUnauthenticated() {
-      redirect("/login");
-    },
-  });
+  const session = useSession();
+  if (
+    session.status === "unauthenticated" ||
+    session.data?.user.role !== "admin"
+  ) {
+    redirect("/admin");
+  }
 
   useEffect(() => {
     async function getItems() {
@@ -45,7 +46,10 @@ const Page = () => {
 
   return (
     <main className="bg-gray-100 min-h-screen">
-      <Header title="Items" username={(session.data?.user as any) ?? ""} />
+      <Header
+        title="Items"
+        username={(session.data?.user.username as any) ?? ""}
+      />
       <div className="p-4">
         <div className="w-full m-auto p-4 border rounded-lg bg-white overflow-y-auto">
           <div className="my-3 p-2 flex justify-end">

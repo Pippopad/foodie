@@ -6,7 +6,10 @@ import { useSearchParams, redirect } from "next/navigation";
 
 const Page = () => {
   const session = useSession();
-  if (session.status === "authenticated") {
+  if (
+    session.status === "authenticated" &&
+    session.data.user.role === "admin"
+  ) {
     redirect("/admin");
   }
 

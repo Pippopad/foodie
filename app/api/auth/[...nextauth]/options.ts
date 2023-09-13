@@ -31,7 +31,7 @@ export const options: NextAuthOptions = {
         }
         console.log(process.env.NEXTAUTH_SECRET);
 
-        return user as any;
+        return { ...user, role: "admin" } as any;
       },
     }),
     CredentialsProvider({
@@ -43,17 +43,15 @@ export const options: NextAuthOptions = {
 
         return new Promise((resolve, reject) => {
           client.bind(
-            `CN=${credentials?.username},CN=Users,DC=testserver,DC=home`,
+            `${credentials?.username}@${process.env.LDAP_DOMAIN}`,
             credentials?.password,
             (err) => {
-              console.log(err);
-
               if (err) {
                 client.destroy(err);
                 return reject("LDAP: Wrong username or password");
               }
 
-              resolve({ username: "test" } as any);
+              resolve({ username: "test", role: "customer" } as any);
             }
           );
         });
@@ -62,11 +60,14 @@ export const options: NextAuthOptions = {
   ],
   callbacks: {
     async jwt({ token, user }: any) {
-      if (user) token.username = user.username;
+      console.log("AAAAAA");
+      console.log(user);
+
+      if (user) token.user = user;
       return token;
     },
     async session({ session, token }) {
-      session.user = token?.username as any;
+      session.user = token?.user as any;
 
       return session;
     },

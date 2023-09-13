@@ -8,13 +8,13 @@ import { redirect } from "next/navigation";
 
 const Page = async () => {
   const session: any = await getServerSession(options);
-  if (!session) {
+  if (!session || session.user?.role !== "admin") {
     redirect("/login");
   }
 
   return (
     <main className="bg-gray-100 min-h-screen">
-      <Header title="Dashboard" username={session.user} />
+      <Header title="Dashboard" username={session.user.username} />
       <TopCards />
       <div className="p-4 grid md:grid-cols-3 gap-4">
         <BarChart />

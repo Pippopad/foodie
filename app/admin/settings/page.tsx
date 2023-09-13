@@ -7,7 +7,7 @@ import { options } from "@/app/api/auth/[...nextauth]/options";
 
 const Page = async () => {
   const session: any = await getServerSession(options);
-  if (!session) {
+  if (!session || session.user?.role !== "admin") {
     redirect("/login");
   }
 
