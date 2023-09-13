@@ -27,7 +27,7 @@ export const options: NextAuthOptions = {
         }
 
         if (!user) {
-          throw Error("Invalid username or password!");
+          throw Error("Invalid admin credentials!");
         }
         console.log(process.env.NEXTAUTH_SECRET);
 
@@ -48,7 +48,7 @@ export const options: NextAuthOptions = {
             (err) => {
               if (err) {
                 client.destroy(err);
-                return reject("LDAP: Wrong username or password");
+                return reject(new Error("Invalid customer credentials!"));
               }
 
               resolve({ username: "test", role: "customer" } as any);
@@ -60,9 +60,6 @@ export const options: NextAuthOptions = {
   ],
   callbacks: {
     async jwt({ token, user }: any) {
-      console.log("AAAAAA");
-      console.log(user);
-
       if (user) token.user = user;
       return token;
     },
