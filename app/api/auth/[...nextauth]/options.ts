@@ -53,7 +53,7 @@ export const options: NextAuthOptions = {
               }
 
               client.search(
-                `CN=Users,DC=testserver,DC=home`,
+                process.env.LDAP_CUSTOMERS_SEARCH_PATH || "",
                 {
                   scope: "one",
                   attributes: ["cn"],
