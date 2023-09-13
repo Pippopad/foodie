@@ -29,7 +29,6 @@ export const options: NextAuthOptions = {
         if (!user) {
           throw Error("Invalid admin credentials!");
         }
-        console.log(process.env.NEXTAUTH_SECRET);
 
         return { ...user, role: "admin" } as any;
       },
@@ -39,7 +38,9 @@ export const options: NextAuthOptions = {
       name: "Customer Login",
       credentials: {},
       async authorize(credentials: any) {
-        const client = ldap.createClient({ url: "ldap://192.168.56.10" });
+        const client = ldap.createClient({
+          url: process.env.LDAP_SERVER || "",
+        });
 
         return new Promise((resolve, reject) => {
           client.bind(
@@ -51,9 +52,38 @@ export const options: NextAuthOptions = {
                 return reject(new Error("Invalid customer credentials!"));
               }
 
-              resolve({ username: "test", role: "customer" } as any);
+              client.search(
+                `CN=Users,DC=testserver,DC=home`,
+                {
+                  scope: "one",
+                  attributes: ["cn"],
+                  filter: `(sAMAccountName=${credentials.username})`,
+                },
+                (err, res) => {
+                  if (err) {
+                    client.destroy(err);
+                    return reject(new Error("Something went wrong!"));
+                  }
+
+                  res.on("searchEntry", (entry) => {
+                    const customerName = entry.json.attributes[0].values[0];
+                    resolve({
+                      username: credentials.username,
+                      name: customerName,
+                      role: "customer",
+                    } as any);
+                  });
+                }
+              );
             }
           );
+
+          client.unbind((err) => {
+            if (err) {
+              client.destroy(err);
+              return reject(new Error("Something went wrong! (unbinding"));
+            }
+          });
         });
       },
     }),
